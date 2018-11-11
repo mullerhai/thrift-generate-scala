@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.tz</groupId>
+    <artifactId>gencalan</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <scrooge.version>18.10.0 </scrooge.version>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.twitter</groupId>
+            <artifactId>scrooge-maven-plugin</artifactId>
+            <version>18.10.0</version>
+        </dependency>
+    </dependencies>
+    <!-- https://twitter.github.io/scrooge/MVNPlugin.html
+    https://mvnrepository.com/artifact/com.twitter/scrooge-maven-plugin
+     https://www.cnblogs.com/rufus-hua/p/4159278.html -->
+
+<build>
+
+    <plugins>
+        <plugin>
+            <groupId>com.twitter</groupId>
+            <artifactId>scrooge-maven-plugin</artifactId>
+            <version>${scrooge.version}</version>
+            <configuration>
+                <thriftNamespaceMappings>
+                    <thriftNamespaceMapping>
+                        <from>com.twitter.demo</from>
+                        <to>xxxxxxxx</to>
+
+                    </thriftNamespaceMapping>
+                </thriftNamespaceMappings>
+                <language>scala</language> <!-- default is scala -->
+                <!--<thriftOpts>-->
+                    <!--&lt;!&ndash; add other Scrooge command line options using thriftOpts &ndash;&gt;-->
+                    <!--<thriftOpt>&#45;&#45;finagle</thriftOpt>-->
+                    <!--&lt;!&ndash;<thriftOpt>\-\-ostrich</thriftOpt>&ndash;&gt;-->
+                <!--</thriftOpts>-->
+                <!-- tell scrooge to extract thrifts from these artifacts -->
+                <!--<dependencyIncludes>-->
+                    <!--<include>event-logger-thrift</include>-->
+                <!--</dependencyIncludes>-->
+            </configuration>
+            <executions>
+                <execution>
+                    <id>thrift-sources</id>
+                    <phase>generate-sources</phase>
+                    <goals>
+                        <goal>compile</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>thrift-test-sources</id>
+                    <phase>generate-test-sources</phase>
+                    <goals>
+                        <goal>testCompile</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+    </plugins>
+</build>
+
+</project>
